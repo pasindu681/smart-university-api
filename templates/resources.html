@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>University Resources</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<div class="container">
+
+<a class="navbar-brand" href="/home">
+Smart University
+</a>
+
+<div>
+
+<a href="/home" class="btn btn-outline-light me-2">
+Home
+</a>
+
+<a href="/resources-page" class="btn btn-primary me-2">
+Resources
+</a>
+
+<a href="/bookings-page" class="btn btn-success me-2">
+Bookings
+</a>
+
+<a href="/dashboard-page" class="btn btn-warning">
+Dashboard
+</a>
+
+</div>
+
+</div>
+
+</nav>
+
+<div class="container mt-5">
+
+<h1 class="text-center">
+University Resources
+</h1>
+
+<p class="text-center text-muted">
+Available University Facilities
+</p>
+
+<hr>
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>ID</th>
+<th>Resource</th>
+<th>Type</th>
+<th>Capacity</th>
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for resource in resources %}
+
+<tr>
+
+<td>{{ resource.id }}</td>
+
+<td>{{ resource.resource_name }}</td>
+
+<td>
+
+<span class="badge bg-info">
+{{ resource.resource_type }}
+</span>
+
+</td>
+
+<td>
+
+<span class="badge bg-secondary">
+{{ resource.capacity }}
+</span>
+
+</td>
+
+<td>
+
+{% if resource.status == "available" %}
+
+<span class="badge bg-success">
+Available
+</span>
+
+{% else %}
+
+<span class="badge bg-danger">
+Unavailable
+</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+<hr>
+
+<div class="text-center">
+
+<a href="/bookings-page" class="btn btn-success">
+Book Resource
+</a>
+
+<a href="/dashboard-page" class="btn btn-warning">
+Dashboard
+</a>
+
+<a href="/home" class="btn btn-primary">
+Home
+</a>
+
+</div>
+
+<hr>
+
+<div class="text-center text-muted">
+
+<p>
+
+Smart University Resource Booking System
+
+<br>
+
+FastAPI + MySQL + Bootstrap
+
+</p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
