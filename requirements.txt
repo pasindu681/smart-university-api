@@ -1,4 +1,7 @@
 fastapi
-uvicorn
+uvicorn[standard]
 sqlalchemy
 pymysql
+jinja2
+python-multipart
+gunicorn
