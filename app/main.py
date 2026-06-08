@@ -504,3 +504,78 @@ def bookings_page(request: Request):
         }
     )
 
+#tempory data add db
+
+@app.on_event("startup")
+def seed_data():
+
+    db = SessionLocal()
+
+    # Seed Resources
+    if db.query(Resource).count() == 0:
+
+        resources = [
+            Resource(
+                resource_name="Lecture Hall A",
+                resource_type="lecture_hall",
+                capacity=150,
+                status="available"
+            ),
+            Resource(
+                resource_name="Lecture Hall B",
+                resource_type="lecture_hall",
+                capacity=120,
+                status="available"
+            ),
+            Resource(
+                resource_name="Computer Lab 01",
+                resource_type="computer_lab",
+                capacity=40,
+                status="available"
+            ),
+            Resource(
+                resource_name="Computer Lab 02",
+                resource_type="computer_lab",
+                capacity=35,
+                status="available"
+            ),
+            Resource(
+                resource_name="Meeting Room 01",
+                resource_type="meeting_room",
+                capacity=20,
+                status="available"
+            ),
+            Resource(
+                resource_name="Projector 01",
+                resource_type="projector",
+                capacity=1,
+                status="available"
+            ),
+            Resource(
+                resource_name="Basketball Court",
+                resource_type="sports_facility",
+                capacity=50,
+                status="available"
+            )
+        ]
+
+        db.add_all(resources)
+        db.commit()
+
+    # Seed Sample Booking
+    if db.query(Booking).count() == 0:
+
+        booking = Booking(
+            user_id=1,
+            resource_id=1,
+            booking_date=date.today(),
+            start_time=time(9, 0),
+            end_time=time(11, 0),
+            status="approved"
+        )
+
+        db.add(booking)
+        db.commit()
+
+    db.close()
+
