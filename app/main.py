@@ -339,12 +339,14 @@ def bookings_page(request: Request):
     db = SessionLocal()
 
     bookings = db.query(Booking).all()
+    resources = db.query(Resource).all()
 
     return templates.TemplateResponse(
         request=request,
         name="bookings.html",
         context={
-            "bookings": bookings
+            "bookings": bookings,
+            "resources": resources
         }
     )
 @app.post("/create-booking")
